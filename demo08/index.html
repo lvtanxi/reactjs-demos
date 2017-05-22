@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>事件处理</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--react.js是React的核心库-->
+  <script src="./../build/react-0.14.0.js"></script>
+  <!--react-dom.js的作用是提供与Dom相关的功能-->
+  <script src="./../build/react-dom.js"></script>
+  <!--browser.min.js的作用是将JSX语法转换成JavaScript-->
+  <script src="./../build/browser.min.js"></script>
+</head>
+
+<body>
+  <!--React渲染的模板内容会插入到这个Dom节点中，作为一个容器-->
+  <div id="container"></div>
+</body>
+<!--在React开发中，使用的是JSX语法，跟JavaScript不兼容，在使用JSX的地方需要设置type
+-->
+<script type="text/babel">
+  /*
+    事件处理
+    React中的事件名称，首字母小写，驼峰命名法
+    案例：定一个组件，组件中包含一个button，给button绑定onClick事件
+  */
+  var MyButton=React.createClass({
+    handClick(){
+      console.log("this is click")
+    },
+    render(){
+      return <button onClick={this.handClick}>{this.props.buttonTilte}</button>
+    }
+  });
+
+  ReactDOM.render(
+    <MyButton buttonTilte="测试点击"/>,
+    document.getElementById("container")
+  )
+
+</script>
+
+</html>

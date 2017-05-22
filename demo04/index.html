@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>复合组件</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--react.js是React的核心库-->
+  <script src="./../build/react-0.14.0.js"></script>
+  <!--react-dom.js的作用是提供与Dom相关的功能-->
+  <script src="./../build/react-dom.js"></script>
+  <!--browser.min.js的作用是将JSX语法转换成JavaScript-->
+  <script src="./../build/browser.min.js"></script>
+</head>
+
+<body>
+  <!--React渲染的模板内容会插入到这个Dom节点中，作为一个容器-->
+  <div id="container"></div>
+</body>
+<!--在React开发中，使用的是JSX语法，跟JavaScript不兼容，在使用JSX的地方需要设置type
+-->
+<script type="text/babel">
+  //复合组件创建对个组件合成一个组件
+
+/*
+  定义个组件WebShow,功能：输出网址的名字和网址，网址是一个可以点击的链接
+*/
+
+var WebName = React.createClass({
+  render(){
+    return <h2>百度</h2>
+  }
+});
+
+var WebLink = React.createClass({
+  render(){
+    return <a href="http://www.baidu.com">http://www.baidu.com</a>
+  }
+});
+
+var WebShow=React.createClass({
+  render(){
+    return (
+      <div>
+        <WebName/>
+        <WebLink/>
+      </div>
+    )
+  }
+});
+
+ReactDOM.render(
+  <WebShow/>,
+  document.getElementById("container")
+);
+
+  
+</script>
+
+</html>

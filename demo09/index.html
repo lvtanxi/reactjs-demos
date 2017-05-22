@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>state</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--react.js是React的核心库-->
+  <script src="./../build/react-0.14.0.js"></script>
+  <!--react-dom.js的作用是提供与Dom相关的功能-->
+  <script src="./../build/react-dom.js"></script>
+  <!--browser.min.js的作用是将JSX语法转换成JavaScript-->
+  <script src="./../build/browser.min.js"></script>
+</head>
+
+<body>
+  <!--React渲染的模板内容会插入到这个Dom节点中，作为一个容器-->
+  <div id="container"></div>
+</body>
+<!--在React开发中，使用的是JSX语法，跟JavaScript不兼容，在使用JSX的地方需要设置type
+-->
+<script type="text/babel">
+  /*
+    state 状态
+    需求：
+    创建一个组件CheckButton,包含一个CheckBox类型的<input>
+    复选框在选中和位选中的状态下，会显示不同的文字
+  */
+  var CheckButton=React.createClass({
+    //定义初始状态
+    getInitialState(){
+      return {
+        isCheck: false
+      }
+    },
+    //定义事件绑定的方法
+    handleChange(){
+      //修改状态值,通过this.state读取设置的状态值
+      this.setState({
+        isCheck: !this.state.isCheck
+      })
+    },
+    render(){
+      //根据状态值，显示不同的文字
+      var text=this.state.isCheck ? "已选中" : "未选中"
+      return (
+        <div>
+          <input type="checkbox" onChange={this.handleChange}/>
+          {text}
+        </div>
+      )
+    }
+  });
+
+  ReactDOM.render(
+    <CheckButton />,
+    document.getElementById("container")
+  )
+  //当state发生变化时，会调用组件内部的render方法
+
+</script>
+
+</html>

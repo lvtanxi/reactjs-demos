@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>自定义组件</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--react.js是React的核心库-->
+  <script src="./../build/react-0.14.0.js"></script>
+  <!--react-dom.js的作用是提供与Dom相关的功能-->
+  <script src="./../build/react-dom.js"></script>
+  <!--browser.min.js的作用是将JSX语法转换成JavaScript-->
+  <script src="./../build/browser.min.js"></script>
+</head>
+
+<body>
+  <!--React渲染的模板内容会插入到这个Dom节点中，作为一个容器-->
+  <div id="container"></div>
+  
+</body>
+<!--在React开发中，使用的是JSX语法，跟JavaScript不兼容，在使用JSX的地方需要设置type
+-->
+<script type="text/babel">
+  /* 创建一个组件类 
+  1. React中创建组件类以大写字母开头，驼峰命名 
+  2. 在React中使用React.createClass方法创建一个组件类 
+  3. 核心代码：每个组件都必须都必须实现自己的render方法。输出定义好的组件模板。返回值：null,false,组件模板
+  4. 注意：组件类只能包含一个顶层标签 */ 
+    var HelloMessage = React.createClass({
+        render() {
+          return <h1>Hello {this.props.name}</h1>;
+        }
+      });
+
+      ReactDOM.render(
+        <HelloMessage name="John" />,
+        document.getElementById('container')
+      );
+      
+
+</script>
+
+</html>

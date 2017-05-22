@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>组件样式</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--react.js是React的核心库-->
+  <script src="./../build/react-0.14.0.js"></script>
+  <!--react-dom.js的作用是提供与Dom相关的功能-->
+  <script src="./../build/react-dom.js"></script>
+  <!--browser.min.js的作用是将JSX语法转换成JavaScript-->
+  <script src="./../build/browser.min.js"></script>
+  <style>
+    .pstyle{
+      font-size: 20px;
+      color: rebeccapurple
+    }
+  </style>
+</head>
+
+<body>
+  <!--React渲染的模板内容会插入到这个Dom节点中，作为一个容器-->
+  <div id="container"></div>
+</body>
+<!--在React开发中，使用的是JSX语法，跟JavaScript不兼容，在使用JSX的地方需要设置type
+-->
+<script type="text/babel">
+  /*
+    组件样式有三种
+    1、内联样式
+    2、对象样式
+    3、选择器样式
+    注意：在React和Html5中设置样式时的书写格式区别
+    A、Html5以;结尾,React以,结尾
+    B、Html5中key、value都不加引号,React中属于JavaScript对象,key的名字不能出现"-"，需要使用驼峰命名法。如果value为字符串，需要加引号
+    C、Html5中vaule如果是数字需要加单位,React中不需要单位
+    案例：
+    div:内联样式
+    h1:对象样式
+    p :外联。注意calss设置时候，只能用className，因为class与React的关键字冲突了
+  */
+  //创建设置h1样式的对象
+  
+  var hstyle={
+    backgroundColor:"green",
+    color:"red"
+  };
+
+    var HelloMessage = React.createClass({
+        render() {
+          return <h1>Hello {this.props.name}</h1>;
+        }
+      });
+      ReactDOM.render(
+        <HelloMessage name="John" />,
+        document.getElementById('container')
+      );
+    
+  var ShowMessage = React.createClass({
+    render(){
+      return (
+        <div style={{backgroundColor:"yellow",borderWidth:5,borderColor:"black"}}>
+          <h1 style={hstyle}>{this.props.firstRow}</h1>
+          <p className="pstyle">{this.props.secondRow}</p>
+        </div>
+      )
+    }
+  });
+  ReactDOM.render(
+    <ShowMessage firstRow="firstRow" secondRow="secondRow"/>,
+    document.getElementById("container")
+  )
+</script>
+
+</html>

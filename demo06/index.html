@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>children</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--react.js是React的核心库-->
+  <script src="./../build/react-0.14.0.js"></script>
+  <!--react-dom.js的作用是提供与Dom相关的功能-->
+  <script src="./../build/react-dom.js"></script>
+  <!--browser.min.js的作用是将JSX语法转换成JavaScript-->
+  <script src="./../build/browser.min.js"></script>
+</head>
+
+<body>
+  <!--React渲染的模板内容会插入到这个Dom节点中，作为一个容器-->
+  <div id="container"></div>
+</body>
+<!--在React开发中，使用的是JSX语法，跟JavaScript不兼容，在使用JSX的地方需要设置type
+-->
+<script type="text/babel">
+  /*
+    this.props.children
+    children表示组件的所有子节点
+
+    定义一个列表组件，列表项中显示的内容，以及列表项的数量都是由外部决定的
+  */
+
+  var ListComponent=React.createClass({
+    render(){
+      return (
+        /*
+          列表项的数量以及内容不确定，在创建模板的时候才能确定，
+          利用this.props.children获取需要显示的内容
+          使用React.Children.map进行children的遍历，返回对象数组
+        */
+        <ul>
+          {
+            React.Children.map(this.props.children,function(child){
+              //child是遍历得到父组件的子节点
+              return <li>{child}</li>
+            })
+          }
+        </ul>
+      )
+    }
+  });
+  ReactDOM.render(
+    (
+      <ListComponent>
+        <h2>百度</h2>
+        <h2>腾讯</h2>
+        <h2>京东</h2>
+      </ListComponent>
+    ),
+    document.getElementById("container")
+  )
+</script>
+
+</html>

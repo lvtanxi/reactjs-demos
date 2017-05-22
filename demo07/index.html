@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>属性默认值/验证</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--react.js是React的核心库-->
+  <script src="./../build/react-0.14.0.js"></script>
+  <!--react-dom.js的作用是提供与Dom相关的功能-->
+  <script src="./../build/react-dom.js"></script>
+  <!--browser.min.js的作用是将JSX语法转换成JavaScript-->
+  <script src="./../build/browser.min.js"></script>
+</head>
+
+<body>
+  <!--React渲染的模板内容会插入到这个Dom节点中，作为一个容器-->
+  <div id="container"></div>
+</body>
+<!--在React开发中，使用的是JSX语法，跟JavaScript不兼容，在使用JSX的地方需要设置type
+-->
+<script type="text/babel">
+  /*
+    属性验证 propTypes
+    组件类的属性 用于验证组件实例的属性是否符合要求
+
+    属性默认值
+    通过实现组件的getDefaultProps方法，对属性设置默认值
+  */
+  var ShowTilte=React.createClass({
+    propTypes:{
+      //title的类型必须是字符串
+      title:React.PropTypes.string.isRequired
+    },
+    getDefaultProps(){
+      //设置默认值
+      return {
+            age: 12
+      }
+    },
+    render(){
+      return (
+        <div>
+          <h2>{this.props.title}</h2>
+          <p>今年{this.props.age}岁</p>
+        </div>
+      )
+    }
+  });
+  ReactDOM.render(
+    <ShowTilte title="属性验证"/>,
+    document.getElementById("container")
+  );
+</script>
+
+</html>
